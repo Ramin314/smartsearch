@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Upload {% endblock %}
+{% block content %}
+
+<div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:gap-x-8 xl:gap-x-12 lg:items-center">
+      <div class="lg:col-span-3">
+        <h1 class="block text-3xl font-bold text-gray-800 sm:text-4xl md:text-5xl lg:text-6xl mb-5" style="line-height: 1.1em">Search</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="query" placeholder="Enter your query" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mb-5" value="{{ query }}">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Search</button>
+        </form>
+
+        {% if query %}
+        {% if search_results %}
+        <ul role="list" class="divide-y divide-gray-100 mt-5">
+            {% for result in search_results %}
+                <li class="flex justify-between gap-x-6 py-5">
+                <div class="flex min-w-0 gap-x-4">
+                    <div class="min-w-0 flex-auto">
+                    <p class="text-sm font-semibold leading-6 text-gray-900">{{ result.0 }}</p>
+                    <p class="mt-1 truncate text-xs leading-5 text-gray-500 max-w-2xl">{{ result.1 }}</p>
+                    </div>
+                </div>
+                <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                    <a href="{{ result.2 }}" class="text-sm leading-6 text-gray-900">PDF</p>
+                    <a href="{{ result.3 }}" class="mt-1 text-xs leading-5 text-gray-500">TXT</p>
+                </div>
+                </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            No results for this query
+        {% endif %}
+        {% endif %}
+
+        </div>  
+    </div>
+  </div>
+{% endblock %}

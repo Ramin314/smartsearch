@@ -1,0 +1,24 @@
+{
+  "name": "upload-app",
+  "version": "1.0.0",
+  "description": "Bat conservation trust upload app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tailwindcss -i static/css/styles.css -o static/css/output.css",
+    "watch": "nodemon -e css,html,js --watch static/css --watch templates --exec npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@preline/overlay": "^2.0.2",
+    "alpinejs": "^3.13.5",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "postcss-import": "^16.0.1",
+    "preline": "^2.0.3",
+    "run": "^1.5.0",
+    "tailwindcss": "^3.4.1",
+    "watch": "^1.0.2"
+  }
+}

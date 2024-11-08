@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Upload {% endblock %}
+{% block content %}
+
+<div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:gap-x-8 xl:gap-x-12 lg:items-center">
+      <div class="lg:col-span-3">
+        <h1 class="block text-3xl font-bold text-gray-800 sm:text-4xl md:text-5xl lg:text-6xl mb-5" style="line-height: 1.1em">Ask a question</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" id="question" name="question" placeholder="Ask a question..." class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 mb-5"><br><br>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Submit</button>
+        </form>
+
+        {% if answer %}
+            <p>{{ answer }}</p>
+        {% endif %}
+      </div>  
+    </div>
+  </div>
+{% endblock %}

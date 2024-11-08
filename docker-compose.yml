@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./project:/app/project
+    env_file:
+      - .env
+    depends_on:
+      - database
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    volumes:
+      - ./project:/app/project
+    command: sh -c "npm install && npm run watch"
+
+  opensearch:
+    image: opensearchproject/opensearch:latest
+    ports:
+      - "9200:9200"
+      - "9600:9600"
+    environment:
+      - "discovery.type=single-node"
+    env_file:
+      - .env
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+
+  database:
+    image: postgres:15
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - database-data:/var/lib/postgresql/data
+
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3
+    volumes:
+      - localstack-data:/opt/data
+      - ./aws:/etc/localstack/init/ready.d
+
+volumes:
+  opensearch-data:
+  database-data:
+  localstack-data:

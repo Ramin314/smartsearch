@@ -1,0 +1,4 @@
+.env
+node_modules/
+**/static/css/output.css
+.DS_Store
