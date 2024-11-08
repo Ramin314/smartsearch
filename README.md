@@ -8,10 +8,10 @@ Run `docker-compose up` and visit the application at `localhost:8000`
 
 ## Deployment
 
-Add the secrets from the .env file (except POSTGRES_HOST and OPENSEARCH_HOST) to an AWS Secrets Manager secret called smart-search.
+Add the secrets from the .env file (except `POSTGRES_HOST` and `OPENSEARCH_HOST`) to an AWS Secrets Manager secret called `smart-search`.
 
-Store AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY within the GitHub repo secrets.
+Store `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` within the GitHub repo secrets.
 
-Create an AWS ECR repository called smart-search.
+Create an AWS ECR repository called `smart-search`.
 
 Run the pipeline.
